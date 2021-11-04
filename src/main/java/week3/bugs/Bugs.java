@@ -1,6 +1,6 @@
 package week3.bugs;
 
-import org.junit.Assert;
+import common.Utils;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,10 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -97,8 +99,7 @@ public class Bugs {
 
         int[][] cache = preprocessField(field);
 
-        showField(field);
-        showField(cache);
+        Utils.showArray(field);
         Consumer<int[][]> func = (array) -> {
         };
 
@@ -131,7 +132,7 @@ public class Bugs {
         int[][] cache = preprocessField(field);
         assertEquals(804, cache[6][7]);
 
-        showField(cache);
+        Utils.showArray(cache);
         String path = findPath(field, cache);
         System.out.println("path = " + path);
         assertEquals("RDDRRDRDDRRRD", path);
@@ -235,16 +236,6 @@ public class Bugs {
 //                System.out.println(track.path + "\t" + value + "\t"+  counter.get());
             }
         }
-    }
-
-    private void showField(int[][] array) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j] + "\t");
-            }
-            System.out.println();
-        }
-        System.out.println();
     }
 }
 
