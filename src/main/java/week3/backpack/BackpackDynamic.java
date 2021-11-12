@@ -12,25 +12,26 @@ import java.util.stream.Collectors;
 
 public class BackpackDynamic {
 
-    private int backpackCapacity;
 
-    private List<Item> items;
-
-    private void readData(String path) {
+    private BackpackRequest readData(String path) {
 
         try {
+
             String[] firstLine = Files.lines(Path.of(path)).findFirst().orElse("0 0").split("\s");
             int thingsCount = Integer.parseInt(firstLine[0]);
-            backpackCapacity = Integer.parseInt(firstLine[1]);
+            int capacity = Integer.parseInt(firstLine[1]);
 
             AtomicInteger counter = new AtomicInteger();
-            items = Files.lines(Path.of(path)).skip(1).map(s -> {
+            List<Item> items = Files.lines(Path.of(path)).skip(1).map(s -> {
                         String[] split = s.split("\s");
                         return new Item(counter.incrementAndGet(), Integer.parseInt(split[0]), Integer.parseInt(split[0]));
                     })
                     .collect(Collectors.toList());
 
+
+
             Assert.assertEquals(thingsCount, items.size());
+            return new BackpackRequest(capacity, items);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -38,17 +39,17 @@ public class BackpackDynamic {
 
     @Test
     public void test0(){
-        readData("src/main/java/week3/backpack/rucksack0.txt");
+        BackpackRequest data = readData("src/main/java/week3/backpack/rucksack0.txt");
 
-        Assert.assertEquals(12, backpackCapacity);
-        Assert.assertEquals(3, items.size());
+        Assert.assertEquals(12, data.getBackpackCapacity());
+        Assert.assertEquals(3, data.getItems().size());
     }
 
     @Test
     public void test1(){
-        readData("src/main/java/week3/backpack/rucksack1.txt");
+        BackpackRequest data = readData("src/main/java/week3/backpack/rucksack1.txt");
 
-        Assert.assertEquals(10000, backpackCapacity);
-        Assert.assertEquals(100, items.size());
+        Assert.assertEquals(10000, data.getBackpackCapacity());
+        Assert.assertEquals(100, data.getItems().size());
     }
 }
