@@ -86,40 +86,11 @@ public class CommonSqTests {
 
 
         //up-left
-//        if (dinamic[i][j] > 0) {
-//            if (i >= 1 && dinamic[i][j] == dinamic[i - 1][j]) {
-//                certificate(i - 1, j, dinamic, first, result); //up
-//            } else if (j >= 1 && dinamic[i][j] == dinamic[i][j - 1]) {
-//                certificate(i, j - 1, dinamic, first, result); //left
-//            } else if (i >= 1 && j >= 1 && dinamic[i][j] == dinamic[i - 1][j - 1] + 1) {
-//                System.out.println(first.get(j) + ", [i, j] = [" + i + ", " + j + "]");
-//                result.add(first.get(j));
-//                certificate(i - 1, j - 1, dinamic, first, result);
-//            } else if (i == 0) {
-//
-//                if (j >= 1 && dinamic[i][j] == dinamic[i][j - 1] + 1) {
-//                    System.out.println(first.get(j) + ", [i, j] = [" + i + ", " + j + "]");
-//                    result.add(first.get(j));
-//                } else {
-//                    certificate(i, j - 1, dinamic, first, result);
-//                }
-//
-//            } else if (j == 0) {
-//                if (i >= 1 && dinamic[i][j] == dinamic[i - 1][j] + 1) {
-//                    System.out.println(first.get(j) + ", [i, j] = [" + i + ", " + j + "]");
-//                    result.add(first.get(j));
-//                } else {
-//                    certificate(i, j - 1, dinamic, first, result);
-//                }
-//            }
-//        }
-
-        //left-up
         if (dinamic[i][j] > 0) {
-            if (j >= 1 && dinamic[i][j] == dinamic[i][j - 1]) {
-                certificate(i, j - 1, dinamic, first, result); //left
-            } else if (i >= 1 && dinamic[i][j] == dinamic[i - 1][j]) {
+            if (i >= 1 && dinamic[i][j] == dinamic[i - 1][j]) {
                 certificate(i - 1, j, dinamic, first, result); //up
+            } else if (j >= 1 && dinamic[i][j] == dinamic[i][j - 1]) {
+                certificate(i, j - 1, dinamic, first, result); //left
             } else if (i >= 1 && j >= 1 && dinamic[i][j] == dinamic[i - 1][j - 1] + 1) {
                 System.out.println(first.get(j) + ", [i, j] = [" + i + ", " + j + "]");
                 result.add(first.get(j));
@@ -142,6 +113,35 @@ public class CommonSqTests {
                 }
             }
         }
+
+        //left-up
+//        if (dinamic[i][j] > 0) {
+//            if (j >= 1 && dinamic[i][j] == dinamic[i][j - 1]) {
+//                certificate(i, j - 1, dinamic, first, result); //left
+//            } else if (i >= 1 && dinamic[i][j] == dinamic[i - 1][j]) {
+//                certificate(i - 1, j, dinamic, first, result); //up
+//            } else if (i >= 1 && j >= 1 && dinamic[i][j] == dinamic[i - 1][j - 1] + 1) {
+//                System.out.println(first.get(j) + ", [i, j] = [" + i + ", " + j + "]");
+//                result.add(first.get(j));
+//                certificate(i - 1, j - 1, dinamic, first, result);
+//            } else if (i == 0) {
+//
+//                if (j >= 1 && dinamic[i][j] == dinamic[i][j - 1] + 1) {
+//                    System.out.println(first.get(j) + ", [i, j] = [" + i + ", " + j + "]");
+//                    result.add(first.get(j));
+//                } else {
+//                    certificate(i, j - 1, dinamic, first, result);
+//                }
+//
+//            } else if (j == 0) {
+//                if (dinamic[i][j] == dinamic[i - 1][j] + 1) {
+//                    System.out.println(first.get(j) + ", [i, j] = [" + i + ", " + j + "]");
+//                    result.add(first.get(j));
+//                } else {
+//                    certificate(i, j - 1, dinamic, first, result);
+//                }
+//            }
+//        }
 
     }
 
