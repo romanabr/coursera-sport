@@ -1,0 +1,1 @@
+![Описание](cpp solution.png)
