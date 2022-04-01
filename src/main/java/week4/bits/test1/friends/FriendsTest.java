@@ -2,13 +2,10 @@ package week4.bits.test1.friends;
 
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class FriendsTest {
 
@@ -21,10 +18,11 @@ public class FriendsTest {
                 {2, 4}
         };
         Friends f = new Friends(4, links);
+        f.solve();
     }
 
     @Test
-    public void test2() throws IOException {
+    public void test1in() throws IOException {
         int[][] links = parse("src/main/java/week4/bits/test1/friends/friends.in");
         Friends f = new Friends(6, links);
         f.solve();
@@ -34,6 +32,13 @@ public class FriendsTest {
     public void test3() throws IOException {
         int[][] links = parse("src/main/java/week4/bits/test1/friends/friends3.txt");
         Friends f = new Friends(6, links);
+        f.solve();
+    }
+
+    @Test
+    public void test2in() throws IOException {
+        int[][] links = parse("src/main/java/week4/bits/test1/friends/friends2.in");
+        Friends f = new Friends(20, links);
         f.solve();
     }
 
