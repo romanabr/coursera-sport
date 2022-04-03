@@ -2,62 +2,80 @@ package week4.bits.test1.friends;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Friends {
-    private final int[][] links;
+
+    private static final Logger logger = LoggerFactory.getLogger(Friends.class);
+
+    //массив масок, номер маски соответсвует номеру человека,
+    // каждый бит маски соответсвует связи этого человека с человеком под номером бита
     private final int[] friends;
 
     public Friends(int peoplesCount, int[][] links) {
-        this.links = links;
         friends = new int[peoplesCount];
+
+        //инициализируем связи
+        for (int[] link : links) {
+            addFriend(link[0] - 1, link[1] - 1);
+            addFriend(link[1] - 1, link[0] - 1);
+        }
+
+        IntStream.range(0, friends.length).forEach(i -> {
+            addFriend(i, i); //добавляем в маску самого человека
+            logger.info("{} {}", natural(i), Integer.toBinaryString(friends[i])); //вывод содержимого кеша со связями
+        });
     }
 
-    public void solve() {
-        Set<List<Integer>> results = new HashSet<>();
+    private void addFriend(int personNumber, int friendNumber) {
+        int mask = friends[personNumber];
+        friends[personNumber] = mask | 1 << friendNumber;
+    }
 
-        prepareCache();
+    public List<String> solve() {
+        Set<List<Integer>> results = new HashSet<>();
         for (int p = 0; p < friends.length; p++) {
 
-            List<Integer> group = new ArrayList<>();
-            group.add(p);
-            for (int f = 0; f < friends.length; f++) {
-                if ((1 << f & friends[p]) > 0 && p != f) { //если этот человек в друзьях у текущего человека
-                    group.add(f);
-                }
-            }
+            //возвращает массив номеров друзей, например: [2, 1, 3, 4]
+            int[] group = getFriendsOfPerson(p);
 
-            int[] groupArray = group.stream().mapToInt(Integer::intValue).toArray();
-            System.out.println("person: " + natural(p) + ", group: " + Arrays.stream(groupArray)
+//            int[] groupArray = group.stream().mapToInt(Integer::intValue).toArray();
+            logger.info("person: {}, group: {}", natural(p), Arrays.stream(group)
                     .mapToObj(i -> "" + natural(i)).collect(Collectors.joining(" ")));
 
-            List<Integer> bestNodes = testGroup(groupArray);
-            bestNodes = bestNodes.stream().sorted().collect(Collectors.toList());
+            List<Integer> bestNodes = testGroup(group);
             results.add(bestNodes);
 
-            System.out.println("\tbestNodes: " + bestNodes.stream()
+            logger.info("bestNodes: {}\t size: {}", bestNodes.stream()
                     .map(this::natural)
                     .map(Object::toString)
-                    .collect(Collectors.joining("-")) + "\t size: " + bestNodes.size());
+                    .collect(Collectors.joining("-")), bestNodes.size());
         }
 
-        int maxLen = 0;
-        for (List<Integer> list : results) {
-            maxLen = Math.max(maxLen, list.size());
-        }
+        int maxLen = results.stream().mapToInt(List::size).max().orElse(0);
+        List<List<Integer>> maxLenResults = results.stream()
+                .filter(list -> list.size() == maxLen)
+                .collect(Collectors.toList());
 
-        List<List<Integer>> maxLenResults = new ArrayList<>();
-        for (List<Integer> list : results) {
-            if (list.size() == maxLen) {
-                maxLenResults.add(list);
-            }
-        }
+        logger.info("Max company size: {}", maxLen);
+        logger.info("Results: ");
 
-
-        System.out.println("\nMax company size: " + maxLen);
-        System.out.println("Results: ");
-        maxLenResults.stream()
+        List<String> result = maxLenResults.stream()
                 .map(list -> list.stream().map(this::natural).map(Object::toString).collect(Collectors.joining("-")))
-                .forEach(s -> System.out.println("\t"+s));
+                .collect(Collectors.toList());
+        result.forEach(s -> logger.info("\t {}",s));
+        return result;
+
+    }
+
+
+    private int[] getFriendsOfPerson(int p) {
+
+        //если этот человек в друзьях у текущего человека
+        return IntStream.range(0, friends.length).filter(f -> (1 << f & friends[p]) > 0).toArray();
     }
 
     private int natural(int x) {
@@ -69,6 +87,7 @@ public class Friends {
         int max = 0;
         List<Integer> bestNodes = Collections.emptyList();
         for (int mask = 0; mask < 1 << group.length; mask++) {
+            //Для каждой из возможных комбинаций людей в группе находим максимальное количество полных друзей
             List<Integer> nodes = new ArrayList<>();
             for (int n = 0; n < group.length; n++) {
                 if ((1 << n & mask) > 0) {
@@ -77,44 +96,29 @@ public class Friends {
             }
 
             //для группы [2, 4, 6], начальная маска должна быть 101010
+            //строим начальную маску для этой группы
             int result = 0;
             for (int n : nodes) {
                 result = result | 1 << n;
             }
 
+            //пересекаем по И маски всех друзей
             for (int n : nodes) {
                 result = result & friends[n];
             }
 
+            //вычисляем кол-во общих битов в результирующей маске
             int count = bitsCount(result, friends.length);
             if (count > max) {
                 max = count;
                 bestNodes = nodes;
             }
-//            System.out.println("mask: " + mask + " " + Integer.toBinaryString(mask)
-//                    + " count: " + count
-//                    + " result: " + Integer.toBinaryString(result)
-//                    + " nodes: " + nodes.stream().map(i -> "" + (i + 1)).collect(Collectors.joining("-")));
 
+            logger.debug("mask: {} {}, count: {}, result:{}, nodes:{}", mask, Integer.toBinaryString(mask),
+                    count, Integer.toBinaryString(result),
+                    nodes.stream().map(i -> "" + (i + 1)).collect(Collectors.joining("-")));
         }
-
-        return bestNodes;
-    }
-
-    private void prepareCache() {
-        for (int i = 0; i < friends.length; i++) {
-            addFriend(i, i);
-        }
-
-        for (int[] link : links) {
-            addFriend(link[0] - 1, link[1] - 1);
-            addFriend(link[1] - 1, link[0] - 1);
-        }
-
-        for (int i = 0; i < friends.length; i++) {
-            System.out.println((i + 1) + " " + Integer.toBinaryString(friends[i]));
-        }
-
+        return bestNodes.stream().sorted().collect(Collectors.toList());
     }
 
     private int bitsCount(int value, int maxBitIndex) {
@@ -126,11 +130,5 @@ public class Friends {
         }
 
         return count;
-    }
-
-
-    private void addFriend(int personNumber, int frendNumber) {
-        int mask = friends[personNumber];
-        friends[personNumber] = mask | 1 << frendNumber;
     }
 }
