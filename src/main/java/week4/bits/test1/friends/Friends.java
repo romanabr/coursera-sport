@@ -4,8 +4,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import common.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static common.Utils.natural;
 
 public class Friends {
 
@@ -50,7 +53,7 @@ public class Friends {
             results.add(bestNodes);
 
             logger.info("bestNodes: {}\t size: {}", bestNodes.stream()
-                    .map(this::natural)
+                    .map(Utils::natural)
                     .map(Object::toString)
                     .collect(Collectors.joining("-")), bestNodes.size());
         }
@@ -64,7 +67,7 @@ public class Friends {
         logger.info("Results: ");
 
         List<String> result = maxLenResults.stream()
-                .map(list -> list.stream().map(this::natural).map(Object::toString).collect(Collectors.joining("-")))
+                .map(list -> list.stream().map(Utils::natural).map(Object::toString).collect(Collectors.joining("-")))
                 .collect(Collectors.toList());
         result.forEach(s -> logger.info("\t {}",s));
         return result;
@@ -76,10 +79,6 @@ public class Friends {
 
         //если этот человек в друзьях у текущего человека
         return IntStream.range(0, friends.length).filter(f -> (1 << f & friends[p]) > 0).toArray();
-    }
-
-    private int natural(int x) {
-        return x + 1;
     }
 
     //пример группы [2, 4, 6] где элемент равен номеру человека
