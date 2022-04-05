@@ -1,4 +1,4 @@
-package week4.bits.test1.salesman;
+package week4.salesman;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class SalesmanTest {
 
     @Test
     public void test2() throws IOException {
-        int[][] d2 = Files.lines(Paths.get("src/main/java/week4/bits/test1/salesman/salesman2.in"))
+        int[][] d2 = Files.lines(Paths.get("src/main/java/week4/salesman/salesman2.in"))
                 .skip(1)
                 .map(line -> Arrays.stream(line.split("\\s"))
                         .mapToInt(Integer::valueOf)

@@ -1,9 +1,9 @@
-package week4.bits.test1.news;
+package week4.news;
 
 import common.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import week4.bits.test1.friends.Friends;
+import week4.friends.Friends;
 
 import java.util.*;
 import java.util.stream.Collectors;

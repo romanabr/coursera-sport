@@ -1,4 +1,4 @@
-package week4.bits.test1.salesman;
+package week4.salesman;
 
 import java.util.*;
 import java.util.stream.Collectors;

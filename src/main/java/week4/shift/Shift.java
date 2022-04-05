@@ -1,4 +1,4 @@
-package week4.bits.test1.shift;
+package week4.shift;
 
 import org.junit.Test;
 

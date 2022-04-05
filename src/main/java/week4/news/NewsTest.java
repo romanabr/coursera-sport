@@ -1,4 +1,4 @@
-package week4.bits.test1.news;
+package week4.news;
 
 import org.junit.Test;
 
@@ -7,10 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -38,7 +34,7 @@ public class NewsTest {
 
     @Test
     public void test1in() throws IOException {
-        int[][] links = parse("src/main/java/week4/bits/test1/news/news.in");
+        int[][] links = parse("src/main/java/week4/news/news.in");
         News news = new News(10, links);
         List<String> solution = news.solve();
 
@@ -51,7 +47,7 @@ public class NewsTest {
 
     @Test
     public void test2in() throws IOException {
-        int[][] links = parse("src/main/java/week4/bits/test1/news/news2.in");
+        int[][] links = parse("src/main/java/week4/news/news2.in");
         News news = new News(20, links);
         List<String> solution = news.solve();
 

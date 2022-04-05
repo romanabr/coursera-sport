@@ -1,4 +1,4 @@
-package week4.bits.test1.friends;
+package week4.friends;
 
 import org.junit.Test;
 
@@ -26,10 +26,9 @@ public class FriendsTest {
         assertTrue(solution.contains("1-2-3"));
 
     }
-
     @Test
     public void test1in() throws IOException {
-        int[][] links = parse("src/main/java/week4/bits/test1/friends/friends.in");
+        int[][] links = parse("src/main/java/week4/friends/friends.in");
         Friends f = new Friends(6, links);
         List<String> solution = f.solve();
 
@@ -40,7 +39,7 @@ public class FriendsTest {
 
     @Test
     public void test3() throws IOException {
-        int[][] links = parse("src/main/java/week4/bits/test1/friends/friends3.txt");
+        int[][] links = parse("src/main/java/week4/friends/friends3.txt");
         Friends f = new Friends(6, links);
         List<String> solution = f.solve();
         assertTrue(solution.contains("1-2-3-6"));
@@ -48,7 +47,7 @@ public class FriendsTest {
 
     @Test
     public void test2in() throws IOException {
-        int[][] links = parse("src/main/java/week4/bits/test1/friends/friends2.in");
+        int[][] links = parse("src/main/java/week4/friends/friends2.in");
         Friends f = new Friends(20, links);
         List<String> solution = f.solve();
         assertTrue(solution.contains("5-6-11-12-15-17-18"));

@@ -1,4 +1,4 @@
-package week4.bits.test1.ones;
+package week4.ones;
 
 import org.junit.Assert;
 import org.junit.Test;

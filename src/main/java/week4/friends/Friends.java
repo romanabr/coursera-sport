@@ -1,4 +1,4 @@
-package week4.bits.test1.friends;
+package week4.friends;
 
 import java.util.*;
 import java.util.stream.Collectors;
