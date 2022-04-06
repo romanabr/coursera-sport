@@ -27,3 +27,9 @@
 
 ### 9 Важная новость p2
     6 +
+
+## Итоговоый тест к модулю 4
+### 1 Шаблон p1
+    adecabedeba
+### 2 Шаблон p2
+    abebbdcbddcbbdebcdbbdadaeea
