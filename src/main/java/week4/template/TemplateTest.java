@@ -22,7 +22,8 @@ public class TemplateTest {
 
     @Test
     public void test3(){
-        Assert.assertEquals("abebbdcbddcbbdebcdbbdadaeea", new Template("?be?bdcb?dcb?debcd?bdad?ee?", 5151).solve());
+//        Assert.assertEquals("abebbdcbddcbbdebcdbbdadaeea", new Template("?be?bdcb?dcb?debcd?bdad?ee?", 5151).solve());
+        Assert.assertEquals("abebbdcbddcbbdebcdbabdadaee", new Template("?be?bdcb?dcb?debcd??bdad?ee", 5151).solve());
     }
 
 }
