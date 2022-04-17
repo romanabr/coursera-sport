@@ -72,7 +72,7 @@ public class GoldBrutForce {
         String str1 = str.apply(list1);
         String str2 = str.apply(list2);
 
-        Function<List<Integer>, Integer> sum = (list)-> list1.stream().mapToInt(i -> i).sum();
+        Function<List<Integer>, Integer> sum = (list)-> list.stream().mapToInt(i -> i).sum();
         int s1 = sum.apply(list1);
         int s2 = sum.apply(list2);
 
