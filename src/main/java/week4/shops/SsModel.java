@@ -4,6 +4,14 @@ public class SsModel {
     private int[] shops;
     private int[] stores;
 
+    public SsModel() {
+    }
+
+    public SsModel(int[] shops, int[] stores) {
+        this.shops = shops;
+        this.stores = stores;
+    }
+
     public int[] getShops() {
         return shops;
     }
