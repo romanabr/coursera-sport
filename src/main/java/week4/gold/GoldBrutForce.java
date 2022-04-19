@@ -3,10 +3,7 @@ package week4.gold;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -25,6 +22,8 @@ public class GoldBrutForce {
         int minDelta = Integer.MAX_VALUE;
         List<Integer> minMasks = new ArrayList<>();
 
+        Set<Integer> deltas = new HashSet<>();
+
         for (int mask = 0; mask < 1 << data.length; mask++) {
 
             int sum1 = 0;
@@ -35,6 +34,7 @@ public class GoldBrutForce {
             }
             int sum2 = sum - sum1;
             int delta = Math.abs(sum2 - sum1);
+            deltas.add(delta);
             logger.debug("mask: {} - {}, sum1: {}, sum2: {}, delta: {}.",
                     mask, Integer.toBinaryString(mask), sum1, sum2, delta);
 
@@ -50,6 +50,9 @@ public class GoldBrutForce {
         logger.info("solutions:{}, minDelta: {}, sum:{}", minMasks.size(), minDelta, sum);
 //        minMasks.forEach(m -> logger.info("mask: {} / {}", m, Integer.toBinaryString(m)));
         minMasks.forEach(this::showMask);
+
+        List<Integer> collect = deltas.stream().sorted().limit(10).collect(Collectors.toList());
+        System.out.println("deltas: " + collect);
 
         return minDelta;
     }
