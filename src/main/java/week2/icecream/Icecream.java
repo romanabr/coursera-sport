@@ -14,7 +14,7 @@ public class Icecream {
 
     @Test
     public void test0() throws IOException {
-        Assert.assertEquals(2, process2("src/main/java/week2/icecream/icecream0.txt"));
+        Assert.assertEquals(3, process2("src/main/java/week2/icecream/icecream0.txt"));
     }
 
     @Test

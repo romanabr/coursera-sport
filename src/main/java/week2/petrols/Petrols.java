@@ -14,17 +14,17 @@ public class Petrols {
 
     @Test
     public void test1() throws IOException {
-        Assert.assertEquals(2, petrols("src/main/java/week2/petrols1.txt"));
+        Assert.assertEquals(2, petrols("src/main/java/week2/petrols/petrols1.txt"));
     }
 
     @Test
     public void test2() throws IOException {
-        Assert.assertEquals(4, petrols("src/main/java/week2/petrols2.txt"));
+        Assert.assertEquals(4, petrols("src/main/java/week2/petrols/petrols2.txt"));
     }
 
     @Test
     public void test3() throws IOException {
-        Assert.assertEquals(1021, petrols("src/main/java/week2/petrols3.txt"));
+        Assert.assertEquals(1021, petrols("src/main/java/week2/petrols/petrols3.txt"));
     }
 
     private int petrols(String path) throws IOException {

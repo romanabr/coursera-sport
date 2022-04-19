@@ -35,17 +35,17 @@ public class Backpack {
     @Test
     public void backpack0() throws IOException {
 
-        Assert.assertEquals(18, (int)backpack("src/main/java/week2/backpack0.txt"));
+        Assert.assertEquals(18, (int)backpack("src/main/java/week2/backpack/backpack0.txt"));
     }
 
     @Test
     public void backpack1() throws IOException {
-        Assert.assertEquals(550, (int)backpack("src/main/java/week2/backpack1.txt"));
+        Assert.assertEquals(550, (int)backpack("src/main/java/week2/backpack/backpack1.txt"));
     }
 
     @Test
     public void backpack2() throws IOException {
-        Assert.assertEquals(7909205, (int)backpack("src/main/java/week2/backpack2.txt"));
+        Assert.assertEquals(7909205, (int)backpack("src/main/java/week2/backpack/backpack2.txt"));
     }
 
     public double backpack(String path) throws IOException {

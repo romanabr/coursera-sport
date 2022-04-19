@@ -78,7 +78,7 @@ public class Schedule {
     @Test
     public void sample3() throws IOException {
 
-        int[][] input = Files.lines(Path.of("src/main/java/week2/schedule2.input.txt")).skip(1)
+        int[][] input = Files.lines(Path.of("src/main/java/week2/schedule/schedule2.input.txt")).skip(1)
 //                .peek(line -> System.out.println(line))
                 .map(s -> Arrays.stream(s.split("\s")).mapToInt(Integer::parseInt).toArray())
                 .toArray(int[][]::new);

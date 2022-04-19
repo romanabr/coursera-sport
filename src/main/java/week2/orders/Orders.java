@@ -38,7 +38,7 @@ public class Orders {
     @Test
     public void test0() throws IOException {
 
-        List<Order> orders = readFile("src/main/java/week2/orders0.input.txt");
+        List<Order> orders = readFile("src/main/java/week2/orders/orders0.input.txt");
 
         assertEquals(2, findOrdersByTo(orders));
         assertEquals(2, findOrdersByFrom(orders));
@@ -49,7 +49,7 @@ public class Orders {
     @Test
     public void test1() throws IOException {
 
-        List<Order> orders = readFile("src/main/java/week2/orders1.input.txt");
+        List<Order> orders = readFile("src/main/java/week2/orders/orders1.input.txt");
 
         assertEquals(4, findOrdersByTo(orders));
         assertEquals(2, findOrdersByFrom(orders));
@@ -59,7 +59,7 @@ public class Orders {
     @Test
     public void test2() throws IOException {
 
-        List<Order> orders = readFile("src/main/java/week2/orders2.input.txt");
+        List<Order> orders = readFile("src/main/java/week2/orders/orders2.input.txt");
 
         assertEquals(372, findOrdersByTo(orders));
         assertEquals(5, findOrdersByFrom(orders));

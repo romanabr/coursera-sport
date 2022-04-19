@@ -1,4 +1,4 @@
-package week2;
+package week2.frequency;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,13 +15,13 @@ public class InfiniteRoomOrders {
     @Test
     public void test1() throws IOException {
 
-        Assert.assertEquals(2, process("src/main/java/week2/inf-orders.txt"));
+        Assert.assertEquals(2, process("src/main/java/week2/frequency/inf-orders.txt"));
     }
 
     @Test
     public void test2() throws IOException {
 
-        Assert.assertEquals(50038, process("src/main/java/week2/inf-orders-2.txt"));
+        Assert.assertEquals(50038, process("src/main/java/week2/frequency/inf-orders-2.txt"));
     }
 
     public int process(String path) throws IOException {
