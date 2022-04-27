@@ -45,13 +45,13 @@ public class Utils {
         System.out.println();
     }
 
-    public static void showArray(boolean[][] array) {
+    public static void showArray(boolean[][] array, String sep) {
         for (int i = 0; i < array.length; i++) {
             StringBuilder out = new StringBuilder();
             out.append(i).append(":\t");
 
             for (int j = 0; j < array[i].length; j++) {
-                out.append(array[i][j] ? 1 : 0).append(" ");
+                out.append(array[i][j] ? 1 : 0).append(sep);
             }
             logger.debug("{}", out);
         }
