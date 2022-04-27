@@ -1,5 +1,6 @@
 package week3.arithmetic;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.nio.file.Files;
@@ -16,10 +17,16 @@ public class ExpressionTest {
     @Test
     public void test1(){
         Model model = read("src/main/java/week3/arithmetic/doc/in1.txt");
-        model.numbers[0] -= model.sum;
+        String exp = "21-27+34+20-29-24+38+38-22-24";
+        Assert.assertEquals(exp, new ExprDynamic(model).solve());
+    }
 
-        String result = new ExprDynamic(model.numbers).solve();
-        System.out.println("result = " + result);
+    @Test
+    public void test2(){
+        Model model = read("src/main/java/week3/arithmetic/doc/in2.txt");
+        String exp = "91-67-84-50-69-74-78-58-62-64-55-95-81-77-61-91-95-92-77-86-91-54-52-53-92-82-71-66-68-95-97-76-71" +
+                "+88-69-62-67-99-85-94-53-61-72-83-73-64-91-61-53-68";
+        Assert.assertEquals(exp, new ExprDynamic(model).solve());
     }
 
     @Test

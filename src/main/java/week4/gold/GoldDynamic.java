@@ -56,7 +56,7 @@ public class GoldDynamic {
 
         String dataStr = Arrays.stream(data).mapToObj(Objects::toString).collect(Collectors.joining(" "));
         logger.info("data: {}", dataStr);
-        showArray(d);
+        showArray(d, " ");
 
 
         int middle = sumToAchieve / 2;
